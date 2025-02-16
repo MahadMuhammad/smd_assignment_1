@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Smd_assignment_1</string>
+    <string name="welcome_message">Welcome to QUIZ</string>
+    <string name="enter_name">Enter your name</string>
+    <string name="start_quiz">Start Quiz\n</string>
+    <string name="previous">Goto previous</string>
+    <string name="next">Goto Next</string>
+    <string name="share_score">Do you want to share your score?</string>
 </resources>

@@ -1,24 +1,38 @@
 package com.example.smd_assignment_1;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class SplashActivity extends AppCompatActivity {
+    private static final int SPLASH_TIMEOUT = 2500; // 2500/1000 = 2.5 seconds
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // init the image provided by SIr
+        ImageView logo = findViewById(R.id.logo);
+        Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+
+        logo.startAnimation(fadeIn);
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();  // Close splash screen
+        }, 2000);
+
+//        new Handler().postDelayed(() -> {
+//            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+//            startActivity(intent);
+//            finish();  // Close splash screen
+//        }, SPLASH_TIMEOUT);
     }
 }
